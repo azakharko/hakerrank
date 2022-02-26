@@ -12,14 +12,18 @@ require 'stringio'
 #
 
 def checkMagazine(magazine, note)
-    # Write your code here
-
     m_d = Hash.new(0)
     n_d = Hash.new(0)
-    note.each { |n| n_d[n] = n_d[n] + 1 }
-    magazine.each { |m| m_d[m] = m_d[m] + 1 }
-    n_d.each { |key, value| m_d[key] = m_d[key] - value }
-    puts m_d.values.any? { |v| v < 0 } ? "No" : "Yes"
+
+    # add obvious exit condition
+    if magazine.size < note.size then
+        puts "No"
+    else
+        note.each { |n| n_d[n] = n_d[n] + 1 }
+        magazine.each { |m| m_d[m] = m_d[m] + 1 }
+        n_d.each { |key, value| m_d[key] = m_d[key] - value }
+        puts m_d.values.any? { |v| v < 0 } ? "No" : "Yes"
+    end
 end
 
 first_multiple_input = gets.rstrip.split
